@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detailed News</title>
+    <link rel="stylesheet" href="./styles/main.css">
+  </head>
+
+  <body>
+    <!--DO NOT CHANGE THIS ID's-->
+
+    <div id="container">
+      <div id="sidebar">
+        <!--add your sidebar component here-->
+      </div>
+
+      <div id="main">
+        <!--DO NOT CHANGE THIS ID's-->
+        <!--Show the clicked article in detailed format here ONLY-->
+      </div>
+    </div>
+  </body>
+</html>
+<script type="module">
+
+  // -------sidebar---------
+import sidebar from './components/sidebar.js';
+
+let bar= document.getElementById('sidebar');
+bar.innerHTML= sidebar();
+
+// ---------DISPLAY CLICKED NEWS----------
+import {displayDetailedNews} from "./scripts/main.js"
+
+let n_info= JSON.parse(localStorage.getItem('clicked_news'))
+// console.log(news_info[0])
+let pd= document.getElementById('main');
+displayDetailedNews(n_info,pd)
+
+
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="./styles/main.css">
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="sidebar">
+        <!--DO NOT CHANGE THIS ID's-->
+        <!--Append the horizontal navbar(sidebar) here only-->
+        <!-- <a href="">Home</a>
+        <a href="search.html">Search News</a>
+        <a href="news.html">Detailed News</a>
+        <a href="">World News</a>
+        <input type="text" placeholder="Search Here..." id="searchbar"> -->
+
+      </div>
+
+      <div id="main">
+        <!--DO NOT CHANGE THIS ID's-->
+        <!--Append top headlines from india here only-->
+      </div>
+    </div>
+  </body>
+</html>
+<script type="module">
+  // ---------SIDEBAR---------
+  import sidebar from './components/sidebar.js';
+
+  let bar= document.getElementById('sidebar');
+  bar.innerHTML= sidebar();
+
+  // ----DISPLAY NEWS---------
+  let url='https://shrouded-earth-23381.herokuapp.com/api/headlines/india'
+  import { apiCall, appendArticles } from "./scripts/main.js";
+
+  let parentdiv= document.getElementById('main');
+  let one_data= await apiCall(url)
+  // console.log(one_data)
+
+  appendArticles(one_data,parentdiv)
+
+  // ------SEARCH NEWS--------
+  import storeSearchterm from './scripts/search.js';
+
+  
+  let uinput= document.getElementById('searchbar');
+  uinput.addEventListener('keypress',(e)=>{
+    if(e.key=='Enter'){
+      let usrinp= document.getElementById('searchbar').value;
+      // console.log(sc_api+ui)
+      storeSearchterm(usrinp)
+    }
+  })
+  </script>
+<!-- <script src="./scripts/search.js" type="module"></script> -->
